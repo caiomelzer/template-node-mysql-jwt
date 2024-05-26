@@ -1,0 +1,20 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Diretórios de módulos e pacotes
+node_modules/
+
+# Arquivos de ambiente
+.env
+
+# Diretórios de dados do Docker
+mysql-data
+
+# Arquivos do editor
+.vscode/
+.idea/
+
+# Sistema operacional
+.DS_Store

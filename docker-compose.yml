@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: mewtwo
+      MYSQL_DATABASE: beach_players
+      MYSQL_USER: beach_players_adm
+      MYSQL_PASSWORD: mewtwo
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mysql
+    environment:
+      NODE_ENV: development
+      JWT_SECRET: 'caiomelzer'
+      DB_HOST: mysql
+      DB_USER: beach_players_adm
+      DB_PASSWORD: mewtwo
+      DB_NAME: beach_players
+    volumes:
+      - .:/app
+      - /app/node_modules
+
+volumes:
+  mysql-data:
